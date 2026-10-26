@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>배달의민족 | 지금 가입하면 웰컴 혜택 3종</title>
+<meta name="description" content="처음이거나 1년 만에 돌아온 당신께! 일주일 배달비 무료 + 첫 주문 10,000원 쿠폰 + 친구 추천 3,000포인트">
+<!-- SNS 공유 / 광고 미리보기 -->
+<meta property="og:title" content="배민 웰컴 혜택 3종, 지금 받아가세요">
+<meta property="og:description" content="일주일 배달비 무료 · 첫 주문 10,000원 할인 · 친구 추천 3,000P">
+<meta property="og:type" content="website">
+<script>document.documentElement.className += ' js';</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mint: #2AC1BC;
+    --mint-dark: #1FA8A3;
+    --mint-light: #E6F8F7;
+    --navy: #1B2A3A;
+    --yellow: #FFE14D;
+    --red: #FF5A5F;
+    --text: #222;
+    --sub: #666;
+    --line: #EEE;
+    --bg: #FFFFFF;
+    --bg-soft: #F7F9FA;
+    --radius: 20px;
+    --max: 480px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text);
+    background: #DDEFEE;
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+  }
+  .page {
+    max-width: var(--max);
+    margin: 0 auto;
+    background: var(--bg);
+    min-height: 100vh;
+    padding-bottom: 96px; /* 하단 고정 CTA 공간 */
+    overflow: hidden;
+  }
+  .display { font-family: 'Do Hyeon', 'Noto Sans KR', sans-serif; font-weight: 400; }
+  section { padding: 56px 20px; }
+  .eyebrow {
+    display: inline-block;
+    font-size: 13px; font-weight: 700;
+    color: var(--mint-dark);
+    background: var(--mint-light);
+    padding: 6px 12px; border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  .sec-title { font-size: 30px; line-height: 1.3; margin-bottom: 10px; }
+  .sec-desc { font-size: 15px; color: var(--sub); line-height: 1.6; }
+  .center { text-align: center; }
+
+  /* 버튼 */
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; height: 60px;
+    border: 0; border-radius: 16px;
+    font-family: inherit; font-size: 18px; font-weight: 900;
+    text-decoration: none; cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:active { transform: scale(.98); }
+  .btn-primary { background: var(--navy); color: #fff; box-shadow: 0 8px 20px rgba(27,42,58,.25); }
+  .btn-mint { background: var(--mint); color: #fff; box-shadow: 0 8px 20px rgba(42,193,188,.35); }
+  .btn-sub { font-size: 12px; font-weight: 500; opacity: .8; }
+
+  /* 1. 상단 바 */
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px; padding: 0 20px;
+    background: rgba(42,193,188,.96);
+    backdrop-filter: blur(6px);
+  }
+  .logo { font-family: 'Do Hyeon', sans-serif; font-size: 24px; color: #fff; text-decoration: none; }
+  .topbar a.mini {
+    font-size: 13px; font-weight: 700; color: var(--mint-dark);
+    background: #fff; padding: 8px 14px; border-radius: 999px; text-decoration: none;
+  }
+
+  /* 2. 히어로 */
+  .hero {
+    background: var(--mint);
+    color: #fff;
+    padding: 40px 20px 64px;
+    position: relative;
+    text-align: center;
+  }
+  .hero::after {
+    content: ""; position: absolute; left: -10%; right: -10%; bottom: -40px;
+    height: 80px; background: var(--bg); border-radius: 50% 50% 0 0;
+  }
+  .hero .tag {
+    display: inline-block; background: var(--yellow); color: var(--navy);
+    font-size: 14px; font-weight: 900; padding: 6px 14px; border-radius: 999px;
+    margin-bottom: 18px; transform: rotate(-2deg);
+  }
+  .hero h1 { font-size: 44px; line-height: 1.2; margin-bottom: 14px; }
+  .hero h1 em { font-style: normal; color: var(--yellow); }
+  .hero p.lead { font-size: 16px; line-height: 1.6; opacity: .95; margin-bottom: 28px; }
+  .hero-visual {
+    font-size: 92px; line-height: 1; margin: 6px 0 26px;
+    animation: ride 2.4s ease-in-out infinite;
+  }
+  @keyframes ride { 0%,100% { transform: translateX(-10px) rotate(-3deg); } 50% { transform: translateX(10px) rotate(3deg); } }
+  .hero-sum {
+    background: #fff; color: var(--text);
+    border-radius: var(--radius); padding: 18px 12px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;
+    box-shadow: 0 12px 30px rgba(0,0,0,.12);
+    margin-bottom: 22px; position: relative; z-index: 1;
+  }
+  .hero-sum div { padding: 4px 2px; }
+  .hero-sum div + div { border-left: 1px solid var(--line); }
+  .hero-sum strong { display: block; font-family: 'Do Hyeon', sans-serif; font-size: 22px; color: var(--mint-dark); }
+  .hero-sum span { font-size: 12px; color: var(--sub); }
+  .hero .btn { position: relative; z-index: 1; }
+  .hero .notice { position: relative; z-index: 1; margin-top: 12px; font-size: 12px; opacity: .85; }
+
+  /* 3. 대상 안내 */
+  .target { padding-top: 64px; }
+  .target-list { display: grid; gap: 12px; margin-top: 24px; }
+  .target-item {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--bg-soft); border-radius: 16px; padding: 18px;
+    text-align: left;
+  }
+  .target-item .ico { font-size: 34px; flex-shrink: 0; }
+  .target-item b { display: block; font-size: 17px; margin-bottom: 2px; }
+  .target-item small { font-size: 14px; color: var(--sub); }
+
+  /* 4. 혜택 카드 */
+  .benefits { background: var(--bg-soft); }
+  .benefit-list { display: grid; gap: 18px; margin-top: 28px; }
+  .benefit {
+    position: relative; background: #fff; border-radius: var(--radius);
+    padding: 26px 22px 24px; box-shadow: 0 6px 18px rgba(0,0,0,.05);
+    text-align: left; overflow: hidden;
+  }
+  .benefit .num {
+    position: absolute; top: 16px; right: 18px;
+    font-family: 'Do Hyeon', sans-serif; font-size: 48px; color: var(--mint-light);
+  }
+  .benefit .badge {
+    display: inline-block; font-size: 12px; font-weight: 700; color: #fff;
+    background: var(--mint); padding: 4px 10px; border-radius: 6px; margin-bottom: 12px;
+  }
+  .benefit h3 { font-size: 15px; color: var(--sub); font-weight: 500; margin-bottom: 4px; }
+  .benefit .big { font-family: 'Do Hyeon', sans-serif; font-size: 36px; line-height: 1.2; color: var(--navy); margin-bottom: 10px; }
+  .benefit .big em { font-style: normal; color: var(--mint-dark); }
+  .benefit p { font-size: 14px; color: var(--sub); line-height: 1.6; }
+  .benefit .emoji { font-size: 40px; margin-bottom: 6px; display: block; }
+
+  /* 쿠폰 모양 카드 */
+  .coupon {
+    background: var(--navy); color: #fff;
+  }
+  .coupon h3, .coupon p { color: rgba(255,255,255,.75); }
+  .coupon .big { color: #fff; }
+  .coupon .big em { color: var(--yellow); }
+  .coupon .num { color: rgba(255,255,255,.08); }
+  .coupon::before, .coupon::after {
+    content: ""; position: absolute; top: 50%; width: 24px; height: 24px;
+    background: var(--bg-soft); border-radius: 50%; transform: translateY(-50%);
+  }
+  .coupon::before { left: -12px; }
+  .coupon::after { right: -12px; }
+
+  /* 5. 혜택 받는 방법 */
+  .steps-list { margin-top: 28px; display: grid; gap: 0; text-align: left; }
+  .step { display: flex; gap: 16px; position: relative; padding-bottom: 26px; }
+  .step:last-child { padding-bottom: 0; }
+  .step:not(:last-child)::before {
+    content: ""; position: absolute; left: 19px; top: 40px; bottom: 0;
+    width: 2px; background: var(--mint-light);
+  }
+  .step .dot {
+    width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%;
+    background: var(--mint); color: #fff; font-family: 'Do Hyeon', sans-serif; font-size: 20px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step b { display: block; font-size: 17px; margin: 8px 0 4px; }
+  .step small { font-size: 14px; color: var(--sub); line-height: 1.5; }
+
+  /* 6. 친구 추천 */
+  .referral { background: var(--mint-light); }
+  .ref-diagram {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    margin: 28px 0 22px;
+  }
+  .ref-person {
+    background: #fff; border-radius: 18px; padding: 18px 12px; flex: 1; max-width: 140px;
+    box-shadow: 0 6px 16px rgba(42,193,188,.15);
+  }
+  .ref-person .face { font-size: 40px; }
+  .ref-person b { display: block; font-size: 14px; margin: 6px 0 4px; }
+  .ref-person strong { font-family: 'Do Hyeon', sans-serif; font-size: 24px; color: var(--mint-dark); }
+  .ref-plus { font-family: 'Do Hyeon', sans-serif; font-size: 30px; color: var(--mint-dark); }
+  .share-box {
+    background: #fff; border-radius: 16px; padding: 18px; text-align: left;
+  }
+  .share-box label { font-size: 13px; color: var(--sub); display: block; margin-bottom: 8px; }
+  .share-row { display: flex; gap: 8px; }
+  .share-row input {
+    flex: 1; min-width: 0; height: 48px; border: 1.5px solid var(--line); border-radius: 12px;
+    padding: 0 14px; font-family: inherit; font-size: 15px; color: var(--text); background: var(--bg-soft);
+  }
+  .share-row button {
+    height: 48px; padding: 0 16px; border: 0; border-radius: 12px; cursor: pointer;
+    background: var(--mint); color: #fff; font-family: inherit; font-weight: 700; font-size: 14px;
+    white-space: nowrap;
+  }
+  .share-box .hint { font-size: 12px; color: var(--sub); margin-top: 10px; line-height: 1.5; }
+
+  /* 7. 마감 카운트다운 */
+  .urgency { background: var(--navy); color: #fff; }
+  .urgency .sec-desc { color: rgba(255,255,255,.7); }
+  .countdown { display: flex; justify-content: center; gap: 8px; margin: 24px 0 28px; }
+  .cd-box {
+    background: rgba(255,255,255,.08); border-radius: 14px; flex: 1; max-width: 72px; padding: 12px 0;
+  }
+  .cd-box strong { display: block; font-family: 'Do Hyeon', sans-serif; font-size: 34px; color: var(--yellow); }
+  .cd-box span { font-size: 12px; color: rgba(255,255,255,.6); }
+
+  /* 8. 후기 */
+  .reviews-list { display: grid; gap: 12px; margin-top: 24px; text-align: left; }
+  .review { background: var(--bg-soft); border-radius: 16px; padding: 18px; }
+  .review .stars { color: #FFB800; font-size: 14px; margin-bottom: 6px; }
+  .review p { font-size: 15px; line-height: 1.6; margin-bottom: 8px; }
+  .review small { font-size: 12px; color: var(--sub); }
+
+  /* 9. FAQ / 유의사항 */
+  .faq { background: var(--bg-soft); }
+  .faq details {
+    background: #fff; border-radius: 14px; margin-top: 10px; padding: 0 18px; text-align: left;
+  }
+  .faq details:first-of-type { margin-top: 24px; }
+  .faq summary {
+    list-style: none; cursor: pointer; padding: 18px 0; font-weight: 700; font-size: 15px;
+    display: flex; justify-content: space-between; align-items: center; gap: 10px;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; font-size: 22px; color: var(--mint-dark); transition: transform .2s; }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq details p { font-size: 14px; color: var(--sub); line-height: 1.7; padding-bottom: 18px; }
+  .terms { margin-top: 28px; text-align: left; font-size: 12px; color: #999; line-height: 1.8; }
+  .terms b { color: #777; display: block; margin-bottom: 4px; }
+
+  /* 10. 마지막 CTA */
+  .final { background: var(--mint); color: #fff; text-align: center; }
+  .final h2 { font-size: 34px; line-height: 1.3; margin-bottom: 10px; }
+  .final p { font-size: 15px; opacity: .9; margin-bottom: 26px; }
+  .store-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .store-btns a {
+    display: flex; align-items: center; justify-content: center; gap: 6px; height: 52px;
+    background: rgba(0,0,0,.18); color: #fff; border-radius: 12px; text-decoration: none;
+    font-size: 14px; font-weight: 700;
+  }
+
+  footer { padding: 28px 20px; font-size: 11px; color: #999; line-height: 1.7; text-align: center; }
+
+  /* 하단 고정 CTA */
+  .sticky-cta {
+    position: fixed; left: 50%; bottom: 0; transform: translate(-50%, 110%);
+    width: 100%; max-width: var(--max);
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    background: #fff; box-shadow: 0 -6px 20px rgba(0,0,0,.08);
+    z-index: 30; transition: transform .3s ease;
+  }
+  .sticky-cta.show { transform: translate(-50%, 0); }
+  .sticky-cta .btn { height: 56px; font-size: 17px; }
+
+  /* 토스트 */
+  .toast {
+    position: fixed; left: 50%; bottom: 100px; transform: translateX(-50%);
+    background: rgba(0,0,0,.85); color: #fff; font-size: 14px;
+    padding: 12px 18px; border-radius: 999px; opacity: 0; pointer-events: none;
+    transition: opacity .25s; z-index: 40;
+  }
+  .toast.show { opacity: 1; }
+
+  /* PC 설치 모달 (QR) */
+  .qr-modal {
+    position: fixed; inset: 0; z-index: 50; display: none;
+    align-items: center; justify-content: center; background: rgba(0,0,0,.55); padding: 16px;
+  }
+  .qr-modal.open { display: flex; }
+  .qr-modal .box {
+    background: #fff; border-radius: 24px; padding: 32px 28px; width: 100%; max-width: 360px;
+    text-align: center; position: relative;
+  }
+  .qr-modal h3 { font-family: 'Do Hyeon', sans-serif; font-weight: 400; font-size: 26px; margin-bottom: 6px; }
+  .qr-modal p { font-size: 14px; color: var(--sub); margin-bottom: 18px; }
+  .qr-modal .qr { margin: 0 auto 18px; }
+  .qr-modal .close {
+    position: absolute; top: 12px; right: 14px; border: 0; background: none;
+    font-size: 26px; color: #999; cursor: pointer;
+  }
+  .qr { width: 132px; height: 132px; padding: 8px; background: #fff; border-radius: 12px; }
+  .qr img, .qr canvas { width: 100% !important; height: 100% !important; }
+
+  /* ===== 해상도별 최적화 ===== */
+  .hero-side, .qr-card { display: none; }
+
+  /* 폴드 커버·소형폰 (≤340px) */
+  @media (max-width: 340px) {
+    section { padding: 44px 16px; }
+    .topbar { padding: 0 16px; height: 52px; }
+    .logo { font-size: 20px; }
+    .topbar a.mini { padding: 7px 12px; font-size: 12px; }
+    .hero { padding: 24px 16px 56px; }
+    .hero .tag { font-size: 12px; margin-bottom: 12px; }
+    .hero h1 { font-size: 30px; margin-bottom: 10px; }
+    .hero p.lead { font-size: 14px; margin-bottom: 14px; }
+    .hero-visual { font-size: 52px; margin: 0 0 14px; }
+    .hero-sum { padding: 12px 4px; margin-bottom: 14px; border-radius: 16px; }
+    .hero-sum strong { font-size: 17px; }
+    .hero-sum span { font-size: 11px; }
+    .btn { height: 52px; font-size: 16px; border-radius: 14px; }
+    .sec-title { font-size: 24px; }
+    .benefit { padding: 22px 18px; }
+    .benefit .big { font-size: 30px; }
+    .cd-box strong { font-size: 26px; }
+    .ref-diagram { gap: 6px; }
+    .ref-person { padding: 14px 6px; }
+    .ref-person strong { font-size: 19px; }
+    .share-row { flex-direction: column; }
+    .final h2 { font-size: 28px; }
+    .store-btns { grid-template-columns: 1fr; }
+  }
+
+  /* 태블릿·폴드 펼침 (≥700px) */
+  @media (min-width: 700px) {
+    :root { --max: 720px; }
+    .hero h1 { font-size: 54px; }
+    .hero-sum, .hero .btn, .final .btn, .store-btns { max-width: 520px; margin-left: auto; margin-right: auto; }
+    .target-list, .reviews-list { grid-template-columns: 1fr 1fr; }
+    .steps-list { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .step { flex-direction: column; align-items: center; text-align: center; padding-bottom: 0; }
+    .step:not(:last-child)::before { display: none; }
+    .countdown .cd-box { max-width: 100px; }
+    .share-box, .faq details, .terms { max-width: 600px; margin-left: auto; margin-right: auto; }
+    .urgency .btn { max-width: 520px; margin: 0 auto; }
+  }
+
+  /* 데스크탑 (≥1024px): 전체 폭 + 2단 히어로 + QR 설치 */
+  @media (min-width: 1024px) {
+    :root { --max: 100%; }
+    body { background: var(--bg); }
+    .page { padding-bottom: 0; }
+    .topbar { height: 68px; padding: 0 max(40px, calc((100% - 1040px) / 2)); }
+    .logo { font-size: 28px; }
+    .topbar a.mini { font-size: 14px; padding: 10px 18px; }
+    section { padding: 96px max(40px, calc((100% - 1040px) / 2)); }
+    .sec-title { font-size: 40px; }
+    .sec-desc { font-size: 17px; }
+    .hero { padding: 72px max(40px, calc((100% - 1040px) / 2)) 120px; text-align: left; }
+    .hero-sum { text-align: center; }
+    .hero-inner { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
+    .hero h1 { font-size: 62px; }
+    .hero p.lead { font-size: 19px; }
+    .hero-sum, .hero .btn { max-width: none; margin-left: 0; margin-right: 0; }
+    .hero .mobile-only { display: none; }
+    .hero-side { display: flex; flex-direction: column; align-items: center; gap: 28px; }
+    .hero-side .hero-visual { font-size: 160px; margin: 0; }
+    .qr-card {
+      display: flex; align-items: center; gap: 18px; background: #fff; color: var(--text);
+      border-radius: 20px; padding: 18px 22px 18px 18px; box-shadow: 0 12px 30px rgba(0,0,0,.12);
+      position: relative; z-index: 1;
+    }
+    .qr-card b { display: block; font-size: 17px; margin-bottom: 4px; }
+    .qr-card small { font-size: 13px; color: var(--sub); line-height: 1.5; }
+    .benefit-list { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .benefit { padding: 30px 26px; }
+    .countdown .cd-box { max-width: 120px; }
+    .cd-box strong { font-size: 44px; }
+    .final h2 { font-size: 44px; }
+    .sticky-cta { display: none; }
+    footer { padding: 36px 40px; }
+  }
+
+  /* 스크롤 등장 효과 */
+  /* JS가 동작할 때만 숨김 → 스크립트가 막힌 인앱 브라우저에서도 내용이 보이도록 */
+  .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+  .js .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .js .reveal { opacity: 1; transform: none; transition: none; }
+    .hero-visual { animation: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ① 상단 고정 바 -->
+  <header class="topbar">
+    <a href="#" class="logo">배달의민족</a>
+    <a href="#" class="mini js-download" data-cta="topbar">앱 받기</a>
+  </header>
+
+  <!-- ② 히어로: 첫 화면에서 핵심 메시지 + CTA -->
+  <section class="hero">
+   <div class="hero-inner">
+    <div class="hero-copy">
+    <span class="tag">처음이거나, 1년 만이라면</span>
+    <h1 class="display">다시 만나 반가워요!<br><em>웰컴 혜택 3종</em> 드려요</h1>
+    <p class="lead">지금 가입하면 배달비도, 첫 주문도<br>가볍게 시작할 수 있어요</p>
+    <div class="hero-visual mobile-only" aria-hidden="true">🛵</div>
+    <div class="hero-sum">
+      <div><strong>7일</strong><span>배달비 무료</span></div>
+      <div><strong>10,000원</strong><span>첫 주문 쿠폰</span></div>
+      <div><strong>3,000P</strong><span>친구 추천</span></div>
+    </div>
+    <a href="#" class="btn btn-primary js-download" data-cta="hero">
+      앱 다운받고 혜택 받기 →
+    </a>
+    <p class="notice">※ 혜택은 앱 가입 즉시 자동 지급돼요</p>
+    </div>
+    <!-- 데스크탑 전용: 비주얼 + QR 설치 -->
+    <div class="hero-side">
+      <div class="hero-visual" aria-hidden="true">🛵</div>
+      <div class="qr-card">
+        <div class="qr js-qr"></div>
+        <div><b>휴대폰 카메라로 스캔</b><small>아이폰·갤럭시 모두<br>스토어로 바로 연결돼요</small></div>
+      </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- ③ 대상 안내: "나도 해당되나?" 즉시 확인 -->
+  <section class="target center reveal">
+    <span class="eyebrow">이런 분께 드려요</span>
+    <h2 class="sec-title display">혜택 대상인지 확인해 보세요</h2>
+    <div class="target-list">
+      <div class="target-item">
+        <span class="ico">🙋</span>
+        <div><b>배민이 처음이신 분</b><small>한 번도 가입·주문한 적 없다면 OK</small></div>
+      </div>
+      <div class="target-item">
+        <span class="ico">👋</span>
+        <div><b>1년 넘게 쉬셨던 분</b><small>마지막 주문이 1년 이상 지났다면 OK</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ 혜택 상세 3종 -->
+  <section class="benefits center" id="benefits">
+    <span class="eyebrow reveal">WELCOME BENEFIT</span>
+    <h2 class="sec-title display reveal">가입만 해도 이만큼 드려요</h2>
+    <p class="sec-desc reveal">세 가지 혜택, 모두 중복으로 받을 수 있어요</p>
+
+    <div class="benefit-list">
+      <article class="benefit reveal">
+        <span class="num">01</span>
+        <span class="badge">가입 즉시</span>
+        <span class="emoji">🛵</span>
+        <h3>일주일 동안 부담 없이</h3>
+        <div class="big">배달비 <em>0원</em></div>
+        <p>가입일로부터 7일간, 주문할 때마다 배달비가 무료! 먹고 싶은 메뉴를 마음껏 시켜보세요.</p>
+      </article>
+
+      <article class="benefit coupon reveal">
+        <span class="num">02</span>
+        <span class="badge">첫 주문 한정</span>
+        <span class="emoji">🎟️</span>
+        <h3>첫 주문 파격 할인</h3>
+        <div class="big"><em>10,000원</em> 쿠폰</div>
+        <p>가입하면 쿠폰함에 바로 쏙. 첫 주문 결제 시 자동으로 적용할 수 있어요.</p>
+      </article>
+
+      <article class="benefit reveal">
+        <span class="num">03</span>
+        <span class="badge">친구랑 같이</span>
+        <span class="emoji">🤝</span>
+        <h3>추천한 친구도, 가입한 나도</h3>
+        <div class="big">각각 <em>3,000P</em></div>
+        <p>친구의 추천코드로 가입하면 두 사람 모두에게 배민포인트 3,000P를 드려요.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ⑤ 혜택 받는 방법 -->
+  <section class="steps center reveal">
+    <span class="eyebrow">HOW TO</span>
+    <h2 class="sec-title display">30초면 혜택 받기 끝!</h2>
+    <div class="steps-list">
+      <div class="step">
+        <span class="dot">1</span>
+        <div><b>배민 앱 설치</b><small>아래 버튼을 누르면 스토어로 바로 이동해요</small></div>
+      </div>
+      <div class="step">
+        <span class="dot">2</span>
+        <div><b>회원가입 (추천코드 입력)</b><small>친구 추천코드가 있다면 가입할 때 꼭 입력하세요</small></div>
+      </div>
+      <div class="step">
+        <span class="dot">3</span>
+        <div><b>쿠폰함 확인 후 주문</b><small>배달비 무료 + 10,000원 쿠폰이 자동 지급돼요</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ 친구 추천 -->
+  <section class="referral center" id="referral">
+    <span class="eyebrow reveal" style="background:#fff">친구 추천 이벤트</span>
+    <h2 class="sec-title display reveal">같이 가입하면<br>둘 다 3,000P</h2>
+    <p class="sec-desc reveal">추천할수록 포인트가 쌓여요</p>
+
+    <div class="ref-diagram reveal">
+      <div class="ref-person">
+        <div class="face">😎</div><b>추천한 친구</b><strong>+3,000P</strong>
+      </div>
+      <span class="ref-plus">+</span>
+      <div class="ref-person">
+        <div class="face">🥳</div><b>가입한 나</b><strong>+3,000P</strong>
+      </div>
+    </div>
+
+    <div class="share-box reveal">
+      <label for="refLink">이 페이지를 친구에게 공유하고 함께 혜택 받으세요</label>
+      <div class="share-row">
+        <input id="refLink" type="text" readonly>
+        <button type="button" id="shareBtn">공유하기</button>
+      </div>
+      <p class="hint">※ 추천코드는 앱 가입 후 [마이배민 &gt; 친구 초대]에서 확인할 수 있어요.</p>
+    </div>
+  </section>
+
+  <!-- ⑦ 마감 임박 카운트다운 -->
+  <section class="urgency center reveal">
+    <span class="eyebrow" style="background:rgba(255,255,255,.1);color:var(--yellow)">⏰ 기간 한정</span>
+    <h2 class="sec-title display">이벤트 종료까지</h2>
+    <p class="sec-desc">기간이 지나면 웰컴 혜택이 사라져요</p>
+    <div class="countdown" id="countdown">
+      <div class="cd-box"><strong id="cdD">00</strong><span>일</span></div>
+      <div class="cd-box"><strong id="cdH">00</strong><span>시간</span></div>
+      <div class="cd-box"><strong id="cdM">00</strong><span>분</span></div>
+      <div class="cd-box"><strong id="cdS">00</strong><span>초</span></div>
+    </div>
+    <a href="#" class="btn btn-mint js-download" data-cta="countdown">지금 바로 혜택 받기</a>
+  </section>
+
+  <!-- ⑧ 사용자 후기 (사회적 증거) -->
+  <section class="reviews center reveal">
+    <span class="eyebrow">REVIEW</span>
+    <h2 class="sec-title display">먼저 받아본 분들의 이야기</h2>
+    <div class="reviews-list">
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>"1년 만에 다시 깔았는데 일주일 내내 배달비 무료라 매일 시켜 먹었어요 😂"</p>
+        <small>※ 예시 후기 – 실제 후기로 교체 필요</small>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>"친구 코드로 가입해서 둘 다 포인트 받았어요. 첫 주문 만 원 할인은 진짜 크네요."</p>
+        <small>※ 예시 후기 – 실제 후기로 교체 필요</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑨ FAQ + 유의사항 -->
+  <section class="faq center">
+    <span class="eyebrow">FAQ</span>
+    <h2 class="sec-title display">궁금한 점이 있으신가요?</h2>
+
+    <details>
+      <summary>예전에 가입했던 계정도 혜택을 받을 수 있나요?</summary>
+      <p>네! 마지막 주문일로부터 1년 이상 지난 계정이라면 앱에 로그인하는 순간 웰컴 혜택이 지급돼요.</p>
+    </details>
+    <details>
+      <summary>배달비 무료는 몇 번까지 되나요?</summary>
+      <p>가입(또는 복귀)일로부터 7일 동안 적용돼요. 일부 가게 및 최소 주문금액 조건이 있을 수 있어요.</p>
+    </details>
+    <details>
+      <summary>10,000원 쿠폰은 어디서 확인하나요?</summary>
+      <p>[마이배민 &gt; 쿠폰함]에서 확인할 수 있고, 첫 주문 결제 화면에서 바로 적용할 수 있어요.</p>
+    </details>
+    <details>
+      <summary>친구 추천 포인트는 언제 들어오나요?</summary>
+      <p>추천코드로 가입한 친구가 가입을 완료하면 추천인과 가입자 모두에게 3,000P가 지급돼요.</p>
+    </details>
+
+    <div class="terms">
+      <b>유의사항</b>
+      · 본 혜택은 배달의민족 신규 가입 고객 또는 최근 1년간 주문 이력이 없는 고객에게 제공됩니다.<br>
+      · 첫 주문 쿠폰은 최소 주문금액 OO원 이상 결제 시 사용 가능하며, 발급일로부터 OO일간 유효합니다.<br>
+      · 배달비 무료 혜택은 일부 가게·서비스(포장, 장보기 등)에서 제외될 수 있습니다.<br>
+      · 친구 추천 포인트는 1인당 최대 OO회까지 지급되며, 부정 가입 시 회수될 수 있습니다.<br>
+      · 이벤트 내용은 당사 사정에 따라 사전 고지 후 변경 또는 조기 종료될 수 있습니다.
+    </div>
+  </section>
+
+  <!-- ⑩ 마지막 CTA -->
+  <section class="final">
+    <h2 class="display">고민은 배달만 늦출 뿐!</h2>
+    <p>지금 설치하고 웰컴 혜택 3종 받아가세요</p>
+    <a href="#" class="btn btn-primary js-download" data-cta="final">배민 앱 다운로드 →</a>
+    <div class="store-btns">
+      <a href="#" class="js-store" data-store="ios" data-cta="final_ios"> App Store</a>
+      <a href="#" class="js-store" data-store="android" data-cta="final_android">▶ Google Play</a>
+    </div>
+  </section>
+
+  <footer>
+    (주)우아한형제들 · 배달의민족<br>
+    본 페이지의 혜택 및 조건은 예시이며 실제 집행 시 확정된 내용으로 교체해 주세요.
+  </footer>
+</div>
+
+<!-- 하단 고정 CTA: 히어로 버튼이 화면 밖으로 나가면 등장 -->
+<div class="sticky-cta" id="stickyCta">
+  <a href="#" class="btn btn-mint js-download" data-cta="sticky">🎁 앱 받고 웰컴 혜택 3종 받기</a>
+</div>
+<div class="toast" id="toast"></div>
+
+<!-- PC에서 CTA 클릭 시: QR로 휴대폰 설치 안내 -->
+<div class="qr-modal" id="qrModal" role="dialog" aria-modal="true" aria-labelledby="qrTitle">
+  <div class="box">
+    <button type="button" class="close" aria-label="닫기">×</button>
+    <h3 id="qrTitle">휴대폰으로 스캔하세요</h3>
+    <p>카메라로 QR을 찍으면 스토어로 바로 연결돼요</p>
+    <div class="qr js-qr"></div>
+    <div class="store-btns">
+      <a href="#" class="js-store" data-store="ios" data-cta="modal_ios" style="background:var(--navy)"> App Store</a>
+      <a href="#" class="js-store" data-store="android" data-cta="modal_android" style="background:var(--navy)">▶ Google Play</a>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script>
+  /* ===== 설정값: 실제 집행 전 확인/교체 ===== */
+  var CONFIG = {
+    iosUrl: 'https://apps.apple.com/kr/app/id378084485',
+    androidUrl: 'https://play.google.com/store/apps/details?id=com.sampleapp',
+    eventEnd: '2026-11-02T23:59:59+09:00'
+  };
+
+  /* 광고 유입 파라미터(utm_*) 유지 → 스토어/분석툴로 전달 */
+  var params = new URLSearchParams(location.search);
+  var utm = {};
+  params.forEach(function (v, k) { if (k.indexOf('utm_') === 0) utm[k] = v; });
+
+  function getOS() {
+    var ua = navigator.userAgent || '';
+    if (/iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && 'ontouchend' in document)) return 'ios';
+    if (/Android/i.test(ua)) return 'android';
+    return 'other';
+  }
+
+  function storeUrl(os) {
+    if (os === 'ios') return CONFIG.iosUrl;
+    var url = CONFIG.androidUrl;
+    var ref = new URLSearchParams(utm).toString();
+    if (ref) url += '&referrer=' + encodeURIComponent(ref); // Play 설치 리퍼러
+    return url;
+  }
+
+  /* 클릭 이벤트 기록 (GA4 / GTM dataLayer) */
+  function track(name, data) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(Object.assign({ event: name }, utm, data));
+  }
+
+  function go(os, cta) {
+    track('app_download_click', { cta_position: cta, os: os });
+    if (os === 'other') { openQr(); return; } // PC 유입: QR로 휴대폰 설치 유도
+    location.href = storeUrl(os);
+  }
+
+  /* QR: 휴대폰으로 찍으면 이 페이지(?go=app)로 와서 OS별 스토어로 자동 이동 */
+  var qrParams = new URLSearchParams(utm); qrParams.set('go', 'app');
+  var qrTarget = location.origin + location.pathname + '?' + qrParams.toString();
+  document.querySelectorAll('.js-qr').forEach(function (el) {
+    if (window.QRCode) new QRCode(el, { text: qrTarget, width: 256, height: 256, colorDark: '#1B2A3A' });
+  });
+  if (params.get('go') === 'app' && getOS() !== 'other') location.replace(storeUrl(getOS()));
+
+  var qrModal = document.getElementById('qrModal');
+  function openQr() { qrModal.classList.add('open'); track('qr_modal_open', {}); }
+  qrModal.addEventListener('click', function (e) {
+    if (e.target === qrModal || e.target.classList.contains('close')) qrModal.classList.remove('open');
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') qrModal.classList.remove('open'); });
+
+  document.querySelectorAll('.js-download').forEach(function (el) {
+    el.addEventListener('click', function (e) { e.preventDefault(); go(getOS(), el.dataset.cta); });
+  });
+  document.querySelectorAll('.js-store').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      track('app_download_click', { cta_position: el.dataset.cta, os: el.dataset.store });
+      location.href = storeUrl(el.dataset.store);
+    });
+  });
+
+  /* 친구 추천: 공유 링크 */
+  var shareUrl = location.origin + location.pathname + '?utm_source=referral&utm_medium=share';
+  document.getElementById('refLink').value = shareUrl;
+  document.getElementById('shareBtn').addEventListener('click', function () {
+    track('referral_share_click', {});
+    var text = '배민 가입하면 배달비 7일 무료 + 첫 주문 10,000원 할인! 내 추천코드로 가입하면 우리 둘 다 3,000P 🎁';
+    if (navigator.share) {
+      navigator.share({ title: '배민 웰컴 혜택', text: text, url: shareUrl }).catch(function () {});
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(text + ' ' + shareUrl).then(function () { showToast('링크가 복사되었어요!'); });
+    } else {
+      document.getElementById('refLink').select();
+      document.execCommand('copy');
+      showToast('링크가 복사되었어요!');
+    }
+  });
+
+  /* 토스트 */
+  var toastTimer;
+  function showToast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg; t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove('show'); }, 2200);
+  }
+
+  /* 카운트다운 */
+  var end = new Date(CONFIG.eventEnd).getTime();
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function tick() {
+    var diff = Math.max(0, end - Date.now());
+    var s = Math.floor(diff / 1000);
+    document.getElementById('cdD').textContent = pad(Math.floor(s / 86400));
+    document.getElementById('cdH').textContent = pad(Math.floor(s % 86400 / 3600));
+    document.getElementById('cdM').textContent = pad(Math.floor(s % 3600 / 60));
+    document.getElementById('cdS').textContent = pad(s % 60);
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* 하단 고정 CTA: 히어로 CTA가 안 보이면 노출 */
+  var sticky = document.getElementById('stickyCta');
+  var heroBtn = document.querySelector('.hero .btn');
+  var finalSec = document.querySelector('.final');
+  var heroVisible = true, finalVisible = false;
+  function updateSticky() { sticky.classList.toggle('show', !heroVisible && !finalVisible); }
+  new IntersectionObserver(function (en) { heroVisible = en[0].isIntersecting; updateSticky(); }).observe(heroBtn);
+  new IntersectionObserver(function (en) { finalVisible = en[0].isIntersecting; updateSticky(); }).observe(finalSec);
+
+  /* 스크롤 등장 애니메이션 */
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+  /* 페이지 진입 기록 */
+  track('landing_view', { page: 'welcome_benefit' });
+</script>
+</body>
+</html>

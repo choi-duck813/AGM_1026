@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>배달의민족 신규 가입 혜택</title>
+<meta name="description" content="가입하면 일주일 배달비 무료, 첫 주문 10,000원 쿠폰, 친구 추천 3,000포인트까지. 지금 앱을 설치하세요.">
+<style>
+:root{
+  --mint:#2ac1bc; --mint-dark:#14958f; --mint-soft:#e6f8f7;
+  --ink:#1c1f23; --sub:#5f6770; --line:#e6e9ec; --bg:#ffffff; --bg2:#f6f8f9;
+  --accent:#ffd84d; --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;word-break:keep-all;padding-bottom:84px}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px}
+section{padding:56px 0}
+h2{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin-bottom:8px}
+.eyebrow{display:inline-block;font-size:13px;font-weight:700;color:var(--mint-dark);margin-bottom:10px}
+.lead{color:var(--sub);font-size:16px;margin-bottom:28px}
+
+/* Header */
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+.logo{font-weight:900;font-size:20px;color:var(--mint);letter-spacing:-.03em}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:14px;font-weight:800;border:0;cursor:pointer;transition:transform .15s,background .15s}
+.btn:active{transform:scale(.97)}
+.btn-sm{padding:8px 14px;font-size:14px;background:var(--mint);color:#fff}
+.btn-lg{padding:17px 24px;font-size:17px;background:var(--mint);color:#fff;box-shadow:0 8px 20px rgba(42,193,188,.35)}
+.btn-lg:hover{background:var(--mint-dark)}
+.btn-ghost{padding:17px 24px;font-size:17px;background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+
+/* Hero */
+.hero{background:linear-gradient(180deg,var(--mint) 0%,#4dd3ce 100%);color:#fff;padding:56px 0 64px;text-align:center;overflow:hidden}
+.badge{display:inline-block;background:var(--accent);color:#3a2f00;font-weight:800;font-size:13px;padding:6px 12px;border-radius:999px;margin-bottom:18px}
+.hero h1{font-size:clamp(32px,8vw,48px);line-height:1.2;letter-spacing:-.03em;font-weight:900;margin-bottom:14px}
+.hero h1 em{font-style:normal;background:linear-gradient(transparent 62%,rgba(255,216,77,.9) 62%)}
+.hero p{font-size:17px;opacity:.95;margin-bottom:28px}
+.hero .cta{display:flex;flex-direction:column;gap:10px;max-width:360px;margin:0 auto}
+.hero .btn-lg{background:#fff;color:var(--mint-dark);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.hero .btn-lg:hover{background:#f2fffe}
+.hero small{display:block;margin-top:14px;font-size:12.5px;opacity:.85}
+.chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+.chip{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);padding:8px 14px;border-radius:999px;font-size:14px;font-weight:700}
+
+/* Benefits */
+.cards{display:grid;gap:14px}
+.card{border:1px solid var(--line);border-radius:var(--radius);padding:24px;background:#fff;display:flex;gap:18px;align-items:flex-start;box-shadow:0 2px 10px rgba(0,0,0,.03)}
+.card .ico{flex:none;width:56px;height:56px;border-radius:16px;background:var(--mint-soft);display:grid;place-items:center;font-size:28px}
+.card h3{font-size:19px;letter-spacing:-.02em;margin-bottom:4px}
+.card .big{color:var(--mint-dark);font-weight:900}
+.card p{color:var(--sub);font-size:15px}
+.card.feature{background:var(--ink);color:#fff;border:0}
+.card.feature .ico{background:rgba(255,255,255,.12)}
+.card.feature p{color:#c5cbd1}
+.card.feature .big{color:var(--accent)}
+
+/* Coupon */
+.coupon-sec{background:var(--bg2)}
+.coupon{position:relative;display:flex;background:#fff;border-radius:var(--radius);overflow:hidden;border:2px dashed var(--mint)}
+.coupon .l{flex:1;padding:24px}
+.coupon .l span{font-size:13px;font-weight:700;color:var(--mint-dark)}
+.coupon .l strong{display:block;font-size:40px;line-height:1.15;font-weight:900;letter-spacing:-.03em;margin:4px 0}
+.coupon .l p{font-size:14px;color:var(--sub)}
+.coupon .r{flex:none;width:96px;background:var(--mint);color:#fff;display:grid;place-items:center;text-align:center;font-weight:800;font-size:14px;padding:10px}
+
+/* Referral */
+.ref{background:var(--mint-soft);border-radius:var(--radius);padding:28px 22px}
+.ref-flow{display:flex;align-items:center;justify-content:center;gap:10px;margin:22px 0}
+.person{background:#fff;border-radius:16px;padding:16px 14px;text-align:center;flex:1;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.person .e{font-size:30px}
+.person b{display:block;margin-top:4px}
+.person span{color:var(--mint-dark);font-weight:900;font-size:18px}
+.plus{font-size:24px;font-weight:900;color:var(--mint-dark)}
+.codebox{display:flex;gap:8px;background:#fff;border-radius:14px;padding:8px;border:1px solid var(--line)}
+.codebox input{flex:1;min-width:0;border:0;outline:0;font-size:16px;padding:8px 10px;background:transparent;font-family:inherit}
+.codebox button{padding:10px 16px;font-size:14px;background:var(--ink);color:#fff;border-radius:10px}
+.hint{font-size:13px;color:var(--sub);margin-top:10px}
+
+/* Steps */
+.steps{display:grid;gap:12px;counter-reset:s}
+.step{display:flex;gap:16px;align-items:center;padding:18px 20px;border-radius:var(--radius);background:var(--bg2)}
+.step::before{counter-increment:s;content:counter(s);flex:none;width:36px;height:36px;border-radius:50%;background:var(--mint);color:#fff;font-weight:900;display:grid;place-items:center}
+.step b{display:block}
+.step span{color:var(--sub);font-size:14.5px}
+
+/* Why */
+.why{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.why div{padding:20px 16px;border:1px solid var(--line);border-radius:var(--radius)}
+.why .e{font-size:28px}
+.why b{display:block;margin:6px 0 2px}
+.why span{font-size:14px;color:var(--sub)}
+
+/* FAQ */
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:22px;line-height:1;color:var(--mint-dark)}
+details[open] summary::after{content:"–"}
+details p{color:var(--sub);font-size:15px;margin-top:10px}
+
+/* Final CTA */
+.final{background:var(--ink);color:#fff;text-align:center}
+.final h2{font-size:28px;margin-bottom:10px}
+.final p{color:#c5cbd1;margin-bottom:26px}
+.final .stores{display:flex;flex-direction:column;gap:10px;max-width:360px;margin:0 auto}
+.final .btn-ghost{background:transparent;color:#fff;border-color:#4a525a}
+
+/* Footer */
+footer{background:#f1f3f5;padding:32px 0;font-size:12.5px;color:#7a828a;line-height:1.7}
+footer h4{font-size:13px;color:#555d65;margin-bottom:6px}
+footer ul{padding-left:16px;margin-bottom:16px}
+
+/* Sticky CTA */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .3s}
+.sticky.show{transform:none}
+.sticky .btn{width:100%;max-width:688px;margin:0 auto;display:flex}
+
+@media(min-width:640px){
+  .cards{grid-template-columns:1fr}
+  .hero .cta{flex-direction:row;max-width:none;justify-content:center}
+  .final .stores{flex-direction:row;max-width:none;justify-content:center}
+  .why{grid-template-columns:repeat(4,1fr)}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a href="#top" class="logo">배달의민족</a>
+    <a class="btn btn-sm" href="#download" data-cta="header">앱 설치</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- 1. HERO -->
+<section class="hero">
+  <div class="wrap">
+    <span class="badge">신규·복귀 고객 한정 혜택</span>
+    <h1>처음이라면,<br><em>배달비 0원</em>부터<br>시작하세요</h1>
+    <p>가입하고 일주일 동안 배달비 무료,<br>첫 주문엔 10,000원 쿠폰까지!</p>
+    <div class="cta">
+      <a class="btn btn-lg" href="#download" data-cta="hero">🎁 혜택 받고 앱 설치하기</a>
+    </div>
+    <small>※ 배민 신규 가입 또는 최근 1년간 이용 이력이 없는 고객 대상</small>
+    <div class="chips">
+      <span class="chip">🚚 일주일 배달비 무료</span>
+      <span class="chip">🎟 10,000원 쿠폰</span>
+      <span class="chip">🤝 3,000P 추천 혜택</span>
+    </div>
+  </div>
+</section>
+
+<!-- 2. 혜택 요약 -->
+<section id="benefits">
+  <div class="wrap">
+    <span class="eyebrow">WELCOME BENEFITS</span>
+    <h2>가입만 해도, 이만큼 드려요</h2>
+    <p class="lead">신규 가입자와 오랜만에 돌아온 고객님을 위한 3가지 혜택이에요.</p>
+    <div class="cards">
+      <article class="card feature">
+        <div class="ico">🎟</div>
+        <div>
+          <h3>첫 주문 <span class="big">10,000원 할인</span> 쿠폰</h3>
+          <p>가입 후 첫 주문에 바로 쓰는 파격 쿠폰. 오늘 뭐 먹을지만 고민하세요.</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="ico">🚚</div>
+        <div>
+          <h3>가입 후 <span class="big">일주일 배달비 무료</span></h3>
+          <p>가입일로부터 7일간 배달비 걱정 없이 마음껏 주문해 보세요.</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="ico">🤝</div>
+        <div>
+          <h3>친구 추천하면 <span class="big">각 3,000포인트</span></h3>
+          <p>추천인 코드로 가입하면 추천한 친구와 가입한 나, 모두에게 배민포인트 3,000P.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 3. 첫 주문 쿠폰 -->
+<section class="coupon-sec">
+  <div class="wrap">
+    <span class="eyebrow">FIRST ORDER COUPON</span>
+    <h2>첫 주문, 10,000원이 빠져요</h2>
+    <p class="lead">치킨, 피자, 족발, 카페까지. 첫 주문이라면 어디서든 쓸 수 있어요.</p>
+    <div class="coupon">
+      <div class="l">
+        <span>신규·복귀 고객 전용</span>
+        <strong>10,000원<br>할인쿠폰</strong>
+        <p>가입 완료 후 쿠폰함에 자동 지급</p>
+      </div>
+      <div class="r">첫 주문<br>할인</div>
+    </div>
+    <p class="hint">※ 최소 주문금액·사용 가능 업종 및 유효기간 등 상세 조건은 하단 유의사항을 확인해 주세요.</p>
+  </div>
+</section>
+
+<!-- 4. 친구 추천 -->
+<section id="referral">
+  <div class="wrap">
+    <div class="ref">
+      <span class="eyebrow">REFER A FRIEND</span>
+      <h2>친구가 알려주면<br>둘 다 3,000포인트</h2>
+      <p class="lead" style="margin-bottom:0">추천받아 가입했다면, 가입 시 추천인 코드만 입력하세요.</p>
+      <div class="ref-flow">
+        <div class="person"><div class="e">🙋</div><b>추천한 친구</b><span>+3,000P</span></div>
+        <div class="plus">+</div>
+        <div class="person"><div class="e">🙌</div><b>가입한 나</b><span>+3,000P</span></div>
+      </div>
+      <label for="code" style="font-weight:700;font-size:14px;display:block;margin-bottom:8px">추천인 코드가 있다면 미리 복사해 두세요</label>
+      <div class="codebox">
+        <input id="code" type="text" placeholder="친구의 추천인 코드 입력" autocomplete="off">
+        <button class="btn" id="copyBtn" type="button">코드 복사</button>
+      </div>
+      <p class="hint" id="copyMsg">앱 설치 후 회원가입 화면에서 붙여넣기 하면 돼요.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. 이용 방법 -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <span class="eyebrow">HOW IT WORKS</span>
+    <h2>3단계면 충분해요</h2>
+    <p class="lead">설치부터 첫 주문까지 몇 분이면 끝나요.</p>
+    <div class="steps">
+      <div class="step"><div><b>앱 설치하고 가입하기</b><span>휴대폰 번호로 간편하게 가입해요. (추천인 코드가 있다면 입력)</span></div></div>
+      <div class="step"><div><b>혜택 확인하기</b><span>쿠폰함과 포인트에서 지급된 혜택을 확인해요.</span></div></div>
+      <div class="step"><div><b>첫 주문하기</b><span>배달비 무료 + 10,000원 쿠폰으로 부담 없이 주문!</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. 배민을 써야 하는 이유 -->
+<section class="coupon-sec">
+  <div class="wrap">
+    <span class="eyebrow">WHY BAEMIN</span>
+    <h2>오랜만이라면 더 반가울 거예요</h2>
+    <p class="lead">먹고 싶은 것을 쉽고 빠르게 찾을 수 있게 도와드려요.</p>
+    <div class="why">
+      <div><div class="e">🍗</div><b>다양한 메뉴</b><span>치킨부터 디저트까지 내 주변 맛집</span></div>
+      <div><div class="e">📍</div><b>내 동네 기반</b><span>주소만 입력하면 가까운 가게 한눈에</span></div>
+      <div><div class="e">⭐</div><b>리뷰로 선택</b><span>실제 주문 후기를 보고 고르기</span></div>
+      <div><div class="e">📦</div><b>실시간 배달 확인</b><span>주문 후 진행 상황을 앱에서 확인</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <span class="eyebrow">FAQ</span>
+    <h2>자주 묻는 질문</h2>
+    <p class="lead">궁금한 점을 미리 확인해 보세요.</p>
+    <details>
+      <summary>누가 이 혜택을 받을 수 있나요?</summary>
+      <p>배달의민족을 한 번도 이용한 적 없는 신규 고객, 또는 최근 1년간 주문 이력이 없는 고객이 대상이에요. 대상 여부는 가입 시 자동으로 확인돼요.</p>
+    </details>
+    <details>
+      <summary>일주일 배달비 무료는 언제부터 적용되나요?</summary>
+      <p>가입 완료일부터 7일간 적용돼요. 적용 대상 가게와 조건은 앱 내 안내를 확인해 주세요.</p>
+    </details>
+    <details>
+      <summary>10,000원 쿠폰은 어디서 확인하나요?</summary>
+      <p>가입 후 앱의 쿠폰함에서 확인할 수 있어요. 유효기간 내에 첫 주문에 사용해 주세요.</p>
+    </details>
+    <details>
+      <summary>추천인 포인트는 언제 지급되나요?</summary>
+      <p>추천인 코드를 입력하고 가입을 완료하면 두 분 모두에게 3,000포인트가 지급돼요. 지급 시점과 조건은 하단 유의사항을 확인해 주세요.</p>
+    </details>
+    <details>
+      <summary>혜택은 중복으로 받을 수 있나요?</summary>
+      <p>일주일 배달비 무료, 첫 주문 쿠폰, 추천 포인트는 각각 별도 혜택이에요. 단, 가게·결제 조건에 따라 일부 중복 적용이 제한될 수 있어요.</p>
+    </details>
+  </div>
+</section>
+
+<!-- 8. 최종 CTA -->
+<section class="final" id="download">
+  <div class="wrap">
+    <h2>지금 설치하면<br>혜택이 기다려요</h2>
+    <p>일주일 배달비 무료 + 10,000원 쿠폰 + 추천 3,000P</p>
+    <div class="stores">
+      <a class="btn btn-lg" id="storePrimary" href="https://apps.apple.com/kr/app/id378084485" data-cta="final-ios">🍎 App Store에서 받기</a>
+      <a class="btn btn-ghost" id="storeSecondary" href="https://play.google.com/store/apps/details?id=com.sampleapp" data-cta="final-android">▶ Google Play에서 받기</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- 9. 유의사항 -->
+<footer>
+  <div class="wrap">
+    <h4>이벤트 유의사항</h4>
+    <ul>
+      <li>본 혜택은 배달의민족 신규 가입 고객 또는 최근 1년간 주문 이력이 없는 고객에게 제공됩니다. (대상 여부는 내부 기준에 따라 판단)</li>
+      <li>배달비 무료는 가입일로부터 7일간 적용되며, 일부 가게·주문 유형은 제외될 수 있습니다.</li>
+      <li>첫 주문 10,000원 쿠폰의 최소 주문금액, 사용 기한, 사용 가능 업종은 [운영 정책에 맞게 입력]입니다.</li>
+      <li>친구 추천 포인트(각 3,000P)는 추천인 코드를 입력하고 가입을 완료한 경우 지급되며, 지급 시점·한도·부정 이용 시 회수 조건은 [운영 정책에 맞게 입력]입니다.</li>
+      <li>본 이벤트는 사전 고지 없이 변경 또는 종료될 수 있습니다.</li>
+    </ul>
+    <p>© Baemin landing page (sample). 실제 집행 전 법무·운영 검수가 필요합니다.</p>
+  </div>
+</footer>
+
+<!-- 하단 고정 CTA -->
+<div class="sticky" id="sticky">
+  <a class="btn btn-lg" href="#download" data-cta="sticky">🎁 혜택 받고 앱 설치하기</a>
+</div>
+
+<script>
+(function(){
+  // 기기별 스토어 우선 노출
+  var ua = navigator.userAgent || '';
+  var isAndroid = /Android/i.test(ua);
+  var p = document.getElementById('storePrimary');
+  var s = document.getElementById('storeSecondary');
+  if (isAndroid) {
+    var tmp = p.href, tmpText = p.textContent, tmpCta = p.dataset.cta;
+    p.href = s.href; p.textContent = s.textContent; p.dataset.cta = s.dataset.cta;
+    s.href = tmp; s.textContent = tmpText; s.dataset.cta = tmpCta;
+  }
+
+  // 히어로/최종 CTA 구간 밖에서만 하단 고정 버튼 노출
+  var sticky = document.getElementById('sticky');
+  var hero = document.querySelector('.hero');
+  var final = document.getElementById('download');
+  var heroOut = false, finalIn = false;
+  function update(){ sticky.classList.toggle('show', heroOut && !finalIn); }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function(e){ heroOut = !e[0].isIntersecting; update(); }).observe(hero);
+    new IntersectionObserver(function(e){ finalIn = e[0].isIntersecting; update(); }).observe(final);
+  }
+
+  // 추천인 코드 복사
+  var input = document.getElementById('code');
+  var msg = document.getElementById('copyMsg');
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    var v = input.value.trim();
+    if (!v) { msg.textContent = '추천인 코드를 먼저 입력해 주세요.'; input.focus(); return; }
+    var done = function(){ msg.textContent = '복사됐어요! 회원가입 시 추천인 코드란에 붙여넣기 하세요.'; };
+    if (navigator.clipboard) { navigator.clipboard.writeText(v).then(done, done); } else { input.select(); document.execCommand('copy'); done(); }
+    try { sessionStorage.setItem('ref_code', v); } catch(e){}
+  });
+
+  // 광고 채널 파라미터(utm) 를 스토어 링크로 전달하려면 여기서 처리 (예: AppsFlyer/Adjust 링크로 교체)
+  // CTA 클릭 이벤트 훅: data-cta 값으로 GA/픽셀 이벤트 연동
+  document.querySelectorAll('[data-cta]').forEach(function(el){
+    el.addEventListener('click', function(){
+      // 예) gtag('event','cta_click',{location:el.dataset.cta}); fbq('track','Lead');
+    });
+  });
+})();
+</script>
+</body>
+</html>

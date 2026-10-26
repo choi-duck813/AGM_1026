@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8"><title>device harness</title>
+<style>
+  body { margin: 0; padding: 24px; background: #2b2f36; font-family: sans-serif; color: #fff; }
+  .row { display: flex; gap: 28px; align-items: flex-start; }
+  .dev b { display: block; font-size: 16px; margin-bottom: 8px; }
+  iframe { border: 0; background: #fff; display: block; box-shadow: 0 0 0 2px #555; }
+</style></head>
+<body>
+<div class="row" id="row"></div>
+<script>
+  // ?src=round0.html&devices=280x653:폴드 커버,375x812:일반 모바일
+  var q = new URLSearchParams(location.search);
+  var src = q.get('src');
+  q.get('devices').split(',').forEach(function (d) {
+    var p = d.split(':'), wh = p[0].split('x');
+    var box = document.createElement('div'); box.className = 'dev';
+    box.innerHTML = '<b>' + (p[1] || '') + ' · ' + wh[0] + '×' + wh[1] + '</b>';
+    var f = document.createElement('iframe');
+    f.src = src; f.width = wh[0]; f.height = wh[1];
+    box.appendChild(f); document.getElementById('row').appendChild(box);
+  });
+</script>
+</body></html>
