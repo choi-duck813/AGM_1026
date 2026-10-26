@@ -802,10 +802,28 @@
     return url;
   }
 
-  /* 클릭 이벤트 기록 (GA4 / GTM dataLayer) */
+  /* Amplitude (프로젝트 887070) — .env의 AMPLITUDE_API_KEY와 같은 값 (브라우저용 공개 키) */
+  var AMPLITUDE_API_KEY = 'd3faf66e81dd7da2e5be803119cff295';
+  var ampQueue = [];
+  if (AMPLITUDE_API_KEY) {
+    var ampScript = document.createElement('script');
+    ampScript.src = 'https://cdn.amplitude.com/script/' + AMPLITUDE_API_KEY + '.js';
+    ampScript.onload = function () {
+      window.amplitude.init(AMPLITUDE_API_KEY, { fetchRemoteConfig: true, autocapture: true });
+      ampQueue.forEach(function (e) { window.amplitude.track(e[0], e[1]); });
+      ampQueue = null;
+    };
+    document.head.appendChild(ampScript);
+  }
+
+  /* 클릭 이벤트 기록 (GA4 / GTM dataLayer + Amplitude) */
   function track(name, data) {
+    var props = Object.assign({}, utm, data);
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push(Object.assign({ event: name }, utm, data));
+    window.dataLayer.push(Object.assign({ event: name }, props));
+    if (!AMPLITUDE_API_KEY) return;
+    if (ampQueue) ampQueue.push([name, props]); // SDK 로딩 전 이벤트는 모아뒀다가 전송
+    else window.amplitude.track(name, props);
   }
 
   function go(os, cta) {
