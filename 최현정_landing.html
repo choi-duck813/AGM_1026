@@ -651,7 +651,7 @@
       <label for="refLink">이 페이지를 친구에게 공유하고 함께 혜택 받으세요</label>
       <div class="share-row">
         <input id="refLink" type="text" readonly>
-        <button type="button" id="shareBtn">공유하기</button>
+        <button type="button" id="shareBtn" data-cta="referral_share">공유하기</button>
       </div>
       <p class="hint">※ 추천코드는 앱 가입 후 [마이한입 &gt; 친구 초대]에서 확인할 수 있어요.</p>
     </div>
@@ -826,8 +826,31 @@
     else window.amplitude.track(name, props);
   }
 
+  /* ===== CTA 노출·클릭 수집 =====
+     data-cta가 붙은 요소가 CTA. 노출(cta_impression)은 화면에 50% 이상 보이면 페이지뷰당 CTA별 1회,
+     클릭(cta_click)은 누를 때마다 기록. 노출 수 대비 클릭 수로 CTA별 클릭률(CTR)을 계산할 수 있음 */
+  function ctaProps(el) {
+    return {
+      cta_position: el.dataset.cta,
+      cta_text: el.textContent.replace(/\s+/g, ' ').trim(),
+      cta_type: el.dataset.store ? 'store' : (el.id === 'shareBtn' ? 'share' : 'download')
+    };
+  }
+  function trackCtaClick(el, extra) { track('cta_click', Object.assign(ctaProps(el), extra)); }
+
+  var seenCtas = {};
+  var ctaImpressionIO = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      var key = e.target.dataset.cta;
+      if (!e.isIntersecting || seenCtas[key]) return;
+      seenCtas[key] = true;
+      track('cta_impression', ctaProps(e.target));
+      ctaImpressionIO.unobserve(e.target);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-cta]').forEach(function (el) { ctaImpressionIO.observe(el); });
+
   function go(os, cta) {
-    track('app_download_click', { cta_position: cta, os: os });
     if (os === 'other') { openQr(); return; } // PC 유입: QR로 휴대폰 설치 유도
     openStore(os);
   }
@@ -854,12 +877,16 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') qrModal.classList.remove('open'); });
 
   document.querySelectorAll('.js-download').forEach(function (el) {
-    el.addEventListener('click', function (e) { e.preventDefault(); go(getOS(), el.dataset.cta); });
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      trackCtaClick(el, { os: getOS() });
+      go(getOS(), el.dataset.cta);
+    });
   });
   document.querySelectorAll('.js-store').forEach(function (el) {
     el.addEventListener('click', function (e) {
       e.preventDefault();
-      track('app_download_click', { cta_position: el.dataset.cta, os: el.dataset.store });
+      trackCtaClick(el, { os: el.dataset.store });
       openStore(el.dataset.store);
     });
   });
@@ -868,7 +895,7 @@
   var shareUrl = location.origin + location.pathname + '?utm_source=referral&utm_medium=share';
   document.getElementById('refLink').value = shareUrl;
   document.getElementById('shareBtn').addEventListener('click', function () {
-    track('referral_share_click', {});
+    trackCtaClick(this, { os: getOS() });
     var text = '한입배달 가입하면 배달비 7일 무료 + 첫 주문 10,000원 할인! 내 추천코드로 가입하면 우리 둘 다 3,000P 🎁';
     if (navigator.share) {
       navigator.share({ title: '한입배달 웰컴 혜택', text: text, url: shareUrl }).catch(function () {});
